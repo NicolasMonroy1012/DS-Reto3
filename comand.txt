@@ -1,0 +1,8 @@
+ssh -i llave-privada.key opc@144.22.56.138
+sudo yum-config-manager --add-repo http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo
+sudo yum-config-manager --enable epel-apache-maven
+sudo yum install -y apache-maven
+sudo alternatives --config java
+sudo alternatives --config javac
+sudo firewall-cmd --permanent --zone=public --add-service=http
+sudo firewall-cmd --reload
