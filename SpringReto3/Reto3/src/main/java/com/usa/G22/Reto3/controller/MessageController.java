@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.cctv.c3r3.controller;
+package com.usa.G22.Reto3.controller;
 
-import co.cctv.c3r3.entity.Message;
-import co.cctv.c3r3.service.MessageService;
 import java.util.List;
 import java.util.Optional;
+
+import com.usa.G22.Reto3.entities.Message;
+import com.usa.G22.Reto3.services.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- *
- * @author cktv
- */
+
 @RestController
 @RequestMapping("/api/Message")
 public class MessageController {

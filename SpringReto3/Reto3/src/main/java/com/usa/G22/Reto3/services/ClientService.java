@@ -3,19 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.cctv.c3r3.service;
+package com.usa.G22.Reto3.services;
 
-import co.cctv.c3r3.entity.Client;
-import co.cctv.c3r3.repository.ClientRepository;
+
 import java.util.List;
 import java.util.Optional;
+
+import com.usa.G22.Reto3.entities.Client;
+import com.usa.G22.Reto3.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author cktv
- */
+
 @Service
 public class ClientService {
     

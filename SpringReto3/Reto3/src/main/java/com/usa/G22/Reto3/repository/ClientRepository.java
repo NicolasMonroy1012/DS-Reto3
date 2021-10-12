@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.cctv.c3r3.repository;
+package com.usa.G22.Reto3.repository;
 
-import co.cctv.c3r3.entity.Client;
+
 import java.util.List;
 import java.util.Optional;
+
+import com.usa.G22.Reto3.entities.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

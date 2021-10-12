@@ -5,10 +5,12 @@
  */
 package co.cctv.c3r3.controller;
 
-import co.cctv.c3r3.entity.Reservation;
-import co.cctv.c3r3.service.ReservationService;
+
 import java.util.List;
 import java.util.Optional;
+
+import com.usa.G22.Reto3.entities.Reservation;
+import com.usa.G22.Reto3.services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- *
- * @author cktv
- */
+
 @RestController
 @RequestMapping("/api/Reservation")
 public class RervationController {
