@@ -1,27 +1,43 @@
-package com.usa.G22.Reto3.repository;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package co.cctv.c3r3.repository;
 
-import com.usa.G22.Reto3.entities.Reservation;
-import com.usa.G22.Reto3.interfaceR.ReservationInterface;
+import co.cctv.c3r3.entity.Reservation;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
-
+/**
+ *
+ * @author cktv
+ */
 @Repository
 public class ReservationRepository {
     @Autowired
-    private ReservationInterface crud;
-
+    private ReservationCrudRepository reservationCrudRepository;
+    
+    //Get ALl
     public List<Reservation> getAll(){
-        return (List<Reservation>) crud.findAll();
+        return (List<Reservation>) reservationCrudRepository.findAll();
     }
-
-    public Optional<Reservation> getReservation(int id){
-        return  crud.findById(id);
+    
+    //Get por Id
+    public Optional <Reservation> getReservation(int id){
+        return reservationCrudRepository.findById(id);
     }
-
+    
+    //SAVE
     public Reservation save(Reservation reservation){
-        return crud.save(reservation);
+        return reservationCrudRepository.save(reservation);
     }
+    
+    //DELETE
+    public void delete(Reservation reservation){
+        reservationCrudRepository.delete(reservation);
+    }
+    
 }

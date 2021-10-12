@@ -1,36 +1,70 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.usa.G22.Reto3.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 
+/**
+ *
+ * @author cktv
+ */
 @Entity
 @Table(name = "reservation")
-public class Reservation implements Serializable {
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+public class Reservation implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idReservation;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date startDate;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date devolutionDate;
     private String status="created";
-
+    
     @ManyToOne
-    @JoinColumn(name = "idSkateboard")
-    @JsonIgnoreProperties("messages")
-    private Skateboard skateboard;
-
+    @JoinColumn(name = "skateId")
+    @JsonIgnoreProperties(value="reservations")
+    private Skate skate;
+    
     @ManyToOne
-    @JoinColumn(name = "idClient")
-    @JsonIgnoreProperties({"reservation","messages"})
+    @JoinColumn(name = "clientId")
+    @JsonIgnoreProperties(value="reservations")
     private Client client;
+    
+    private String score="None";
+    
+    public Reservation(){
+        
+    }
 
-    private String score;
-
-    /*@OneToOne(cascade = {CascadeType.REMOVE},mappedBy="reservation")
-    @JsonIgnoreProperties("reservation")
-    private Score score;*/
+    public Reservation(Integer idReservation, Date startDate, Date devolutionDate, Skate skate, Client client, String score) {
+        this.idReservation = idReservation;
+        this.startDate = startDate;
+        this.devolutionDate = devolutionDate;
+        this.skate = skate;
+        this.client = client;
+        this.score = score;
+    }
 
     public Integer getIdReservation() {
         return idReservation;
@@ -64,12 +98,12 @@ public class Reservation implements Serializable {
         this.status = status;
     }
 
-    public Skateboard getSkateboard() {
-        return skateboard;
+    public Skate getSkate() {
+        return skate;
     }
 
-    public void setSkateboard(Skateboard skateboard) {
-        this.skateboard = skateboard;
+    public void setSkate(Skate skate) {
+        this.skate = skate;
     }
 
     public Client getClient() {
@@ -87,4 +121,7 @@ public class Reservation implements Serializable {
     public void setScore(String score) {
         this.score = score;
     }
+
+    
+    
 }

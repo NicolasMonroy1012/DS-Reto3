@@ -1,27 +1,57 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.usa.G22.Reto3.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "message")
-public class Message implements Serializable {
+public class Message implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMessage;
+    @Column(length = 250)
     private String messageText;
-
+    
+    //@JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "idSkateboard")
-    @JsonIgnoreProperties({"messages","reservations"})
-    private Skateboard skateboard;
-
+    @JoinColumn(name = "skateId")
+    @JsonIgnoreProperties(value="messages")
+    private Skate skate;
+    
+    //Relacion con client
+    //@JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "idClient")
-    @JsonIgnoreProperties({"messages","reservations"})
+    @JoinColumn(name = "clientId")
+    @JsonIgnoreProperties(value="messages")
     private Client client;
+    
+    
+    public Message(){
+        
+    }
+
+    public Message(Integer idMessage, String messageText, Skate skate, Client client) {
+        this.idMessage = idMessage;
+        this.messageText = messageText;
+        this.skate = skate;
+        this.client = client;
+    }
 
     public Integer getIdMessage() {
         return idMessage;
@@ -39,12 +69,12 @@ public class Message implements Serializable {
         this.messageText = messageText;
     }
 
-    public Skateboard getSkateboard() {
-        return skateboard;
+    public Skate getSkate() {
+        return skate;
     }
 
-    public void setSkateboard(Skateboard skateboard) {
-        this.skateboard = skateboard;
+    public void setSkate(Skate skate) {
+        this.skate = skate;
     }
 
     public Client getClient() {
@@ -54,4 +84,6 @@ public class Message implements Serializable {
     public void setClient(Client client) {
         this.client = client;
     }
+
+    
 }
